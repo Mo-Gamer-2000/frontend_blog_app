@@ -21,7 +21,7 @@ const Footer = () => {
               <a href="/">Home Page</a>
             </li>
             <li>
-              <a href="/">Features</a>
+              <a href="/">Feature</a>
             </li>
             <li>
               <a href="/">Documentation</a>
@@ -38,16 +38,16 @@ const Footer = () => {
           <h3 className="text-dark-light font-bold md:text-lg">Services</h3>
           <ul className="text-[#959EAD] text-sm mt-5 space-y-4 md:text-base">
             <li>
-              <a href="/">Reccomendations</a>
+              <a href="/">Recommendation</a>
             </li>
             <li>
-              <a href="/">Designs</a>
+              <a href="/">Design</a>
             </li>
             <li>
-              <a href="/">Themes</a>
+              <a href="/">Theme</a>
             </li>
             <li>
-              <a href="/">Illustrations</a>
+              <a href="/">Illustration</a>
             </li>
             <li>
               <a href="/">UI/UX Kit</a>
@@ -75,7 +75,7 @@ const Footer = () => {
           <h3 className="text-dark-light font-bold md:text-lg">More</h3>
           <ul className="text-[#959EAD] text-sm mt-5 space-y-4 md:text-base">
             <li>
-              <a href="/">Letters</a>
+              <a href="/">Letter</a>
             </li>
             <li>
               <a href="/">License</a>
