@@ -94,7 +94,7 @@ const Header = () => {
     <section className="sticky top-0 left-0 right-0 z-50 bg-white">
       <header className="container mx-auto px-5 flex justify-between py-4 items-center">
         <Link to="/">
-          <img className="w-16" src={images.Logo} alt="logo" />
+          <img className="w-[110px]" src={images.Logo} alt="logo" />
         </Link>
         <div className="lg:hidden z-50">
           {navIsVisible ? (
