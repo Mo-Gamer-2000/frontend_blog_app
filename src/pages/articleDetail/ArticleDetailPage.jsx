@@ -10,7 +10,7 @@ import SuggestedPosts from "./container/SuggestedPosts";
 const breadCrumbsData = [
   { name: "Home", link: "/" },
   { name: "Blog", link: "/blog" },
-  { name: "Article title", link: "/blog/1" },
+  { name: "Article Title", link: "/blog/1" },
 ];
 
 const postsData = [
@@ -68,7 +68,7 @@ const ArticleDetailPage = () => {
             EDUCATION
           </Link>
           <h1 className="text-xl font-medium font-roboto mt-4 text-dark-hard md:text-[26px]">
-            Help children get better education
+            Help Children Get Better Education
           </h1>
           <div className="mt-4 text-dark-soft">
             <p className="leading-7">

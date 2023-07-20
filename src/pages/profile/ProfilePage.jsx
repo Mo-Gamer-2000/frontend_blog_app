@@ -101,7 +101,7 @@ const ProfilePage = () => {
                     message: "Name is required",
                   },
                 })}
-                placeholder="Enter name"
+                placeholder="Enter Name"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.name ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -133,7 +133,7 @@ const ProfilePage = () => {
                     message: "Email is required",
                   },
                 })}
-                placeholder="Enter email"
+                placeholder="Enter Email"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.email ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -155,7 +155,7 @@ const ProfilePage = () => {
                 type="password"
                 id="password"
                 {...register("password")}
-                placeholder="Enter new password"
+                placeholder="Enter New Password"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.password ? "border-red-500" : "border-[#c3cad9]"
                 }`}
