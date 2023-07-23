@@ -10,12 +10,12 @@ const CTA = () => {
         preserveAspectRatio="none"
         viewBox="0 0 2160 263"
         fill="none"
-        xmlns="https://www.w3.org/users/145910/"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <path
           id="Wave"
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M2160 262.5H0V0C360 80 720 120 1080 120C1440 120 1800 80 2160 0V262.5Z"
           fill="#0D2436"
         />
@@ -38,11 +38,11 @@ const CTA = () => {
               </button>
             </div>
             <p className="text-dark-light text-sm leading-7 mt-6 md:text-center md:text-base lg:text-left">
-              <span className="font-bold italic text-[#B3BAC5] md:not-italic md:font-normal md:text-[#B3BAC5]">
-                Get a response by tomorrow:
+              <span className="font-bold italic text-[#B3BAC5] md:not-italic md:font-normal md:text-dark-light">
+                Get a response tomorrow
               </span>{" "}
               if you submit by 9pm today. If we received after 9pm will get a
-              response the following day.
+              reponse the following day.
             </p>
           </div>
           <div className="col-span-12 hidden mb-[70px] md:block md:order-first lg:col-span-6 lg:order-last">
@@ -60,7 +60,7 @@ const CTA = () => {
                     Future of Work
                   </h2>
                   <p className="text-dark-light mt-3 text-sm md:text-lg">
-                    Majority of people will work in jobs that don’t exist today.
+                    Majority of peole will work in jobs that don’t exist today.
                   </p>
                 </div>
               </div>

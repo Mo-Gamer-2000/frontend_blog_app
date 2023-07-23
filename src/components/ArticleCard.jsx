@@ -58,7 +58,7 @@ const ArticleCard = ({ post, className }) => {
                   )}
                 </span>
                 <span className="italic text-dark-light text-xs md:text-sm">
-                  {post.user.verified ? "Verified" : "Unverified"} Writer
+                  {post.user.verified ? "Verified" : "Unverified"} writer
                 </span>
               </div>
             </div>
