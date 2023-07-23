@@ -92,7 +92,7 @@ const Footer = () => {
             className="mx-auto md:mx-0 rounded-[10px]"
           />
           <p className="text-sm text-dark-light text-center mt-4 md:text-left md:text-base lg:text-sm">
-            Build a Modern & Creative Website with React
+            Copyright © 2023. All Rights Reserved.
           </p>
           <ul className="flex justify-center items-center mt-5 space-x-4 text-gray-300 md:justify-start">
             <li>

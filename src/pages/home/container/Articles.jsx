@@ -28,7 +28,7 @@ const Articles = () => {
             />
           ))
         ) : isError ? (
-          <ErrorMessage message="Unable to fetch Post data" />
+          <ErrorMessage message="Oops! We're having trouble loading the posts right now. Please try again in a few moments." />
         ) : (
           data.map((post) => (
             <ArticleCard
