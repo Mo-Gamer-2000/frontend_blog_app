@@ -3,11 +3,12 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
 import MainLayout from "../../components/MainLayout";
 import { getUserProfile, updateProfile } from "../../services/index/users";
 import ProfilePicture from "../../components/ProfilePicture";
 import { userActions } from "../../store/reducers/userReducers";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const ProfilePage = () => {
       dispatch(userActions.setUserInfo(data));
       localStorage.setItem("account", JSON.stringify(data));
       queryClient.invalidateQueries(["profile"]);
-      toast.success("Profile is Updated");
+      toast.success("Profile is updated");
     },
     onError: (error) => {
       toast.error(error.message);
@@ -73,8 +74,6 @@ const ProfilePage = () => {
     mutate({ name, email, password });
   };
 
-  console.log(profileData);
-
   return (
     <MainLayout>
       <section className="container mx-auto px-5 py-10">
@@ -101,7 +100,7 @@ const ProfilePage = () => {
                     message: "Name is required",
                   },
                 })}
-                placeholder="Enter Name"
+                placeholder="Enter name"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.name ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -133,7 +132,7 @@ const ProfilePage = () => {
                     message: "Email is required",
                   },
                 })}
-                placeholder="Enter Email"
+                placeholder="Enter email"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.email ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -155,7 +154,7 @@ const ProfilePage = () => {
                 type="password"
                 id="password"
                 {...register("password")}
-                placeholder="Enter New Password"
+                placeholder="Enter new password"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.password ? "border-red-500" : "border-[#c3cad9]"
                 }`}
