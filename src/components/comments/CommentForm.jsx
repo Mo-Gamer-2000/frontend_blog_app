@@ -5,6 +5,7 @@ const CommentForm = ({
   formSubmitHanlder,
   formCancelHandler = null,
   initialText = "",
+  loading = false,
 }) => {
   const [value, setValue] = useState(initialText);
 
@@ -24,19 +25,20 @@ const CommentForm = ({
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <div className="flex items-center gap-x-2 pt-2">
+        <div className="flex flex-col-reverse gap-y-2 items-center gap-x-2 pt-2 min-[420px]:flex-row">
           {formCancelHandler && (
             <button
               onClick={formCancelHandler}
-              className="px-6 py-2.5 rounded-lg border border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-semibold"
+              className="px-6 py-2.5 rounded-lg border border-red-500 text-red-500"
             >
-              Discard
+              Cancel
             </button>
           )}
           <button
+            disabled={loading}
             type="submit"
-            className="px-6 py-2.5 rounded-lg border border-primary bg-primary
-         text-white font-semibold"
+            className="px-6 py-2.5 rounded-lg bg-primary
+         text-white font-semibold disabled:opacity-70 disabled:cursor-not-allowed"
           >
             {btnLabel}
           </button>
