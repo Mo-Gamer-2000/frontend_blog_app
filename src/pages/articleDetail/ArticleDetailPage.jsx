@@ -85,7 +85,7 @@ const ArticleDetailPage = () => {
       {isLoading ? (
         <ArticleDetailSkeleton />
       ) : isError ? (
-        <ErrorMessage message="Couldn't fetch the post detail" />
+        <ErrorMessage message="Unable to Fetch the Post Data" />
       ) : (
         <section className="container mx-auto max-w-5xl flex flex-col px-5 py-5 lg:flex-row lg:gap-x-5 lg:items-start">
           <article className="flex-1">

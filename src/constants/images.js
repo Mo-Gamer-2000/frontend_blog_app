@@ -14,7 +14,7 @@ const images = {
   PostProfileImage,
   CtaImage,
   samplePostImage,
-  userImage
+  userImage,
 };
 
 export default images;

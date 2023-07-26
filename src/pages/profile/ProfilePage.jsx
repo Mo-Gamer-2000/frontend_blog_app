@@ -38,7 +38,7 @@ const ProfilePage = () => {
       dispatch(userActions.setUserInfo(data));
       localStorage.setItem("account", JSON.stringify(data));
       queryClient.invalidateQueries(["profile"]);
-      toast.success("Profile is updated");
+      toast.success("Profile has been Updated");
     },
     onError: (error) => {
       toast.error(error.message);
@@ -93,14 +93,14 @@ const ProfilePage = () => {
                 {...register("name", {
                   minLength: {
                     value: 1,
-                    message: "Name length must be at least 1 character",
+                    message: "Name Length must be at Least 1 Character Long",
                   },
                   required: {
                     value: true,
-                    message: "Name is required",
+                    message: "Name is Required",
                   },
                 })}
-                placeholder="Enter name"
+                placeholder="Enter Name"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.name ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -129,10 +129,10 @@ const ProfilePage = () => {
                   },
                   required: {
                     value: true,
-                    message: "Email is required",
+                    message: "Email is Required",
                   },
                 })}
-                placeholder="Enter email"
+                placeholder="Enter Email"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.email ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -154,7 +154,7 @@ const ProfilePage = () => {
                 type="password"
                 id="password"
                 {...register("password")}
-                placeholder="Enter new password"
+                placeholder="Enter New Password"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.password ? "border-red-500" : "border-[#c3cad9]"
                 }`}

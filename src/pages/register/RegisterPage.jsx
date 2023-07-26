@@ -77,14 +77,14 @@ const RegisterPage = () => {
                 {...register("name", {
                   minLength: {
                     value: 1,
-                    message: "Name length must be at least 1 character",
+                    message: "Name Length must be at Least 1 Character Long",
                   },
                   required: {
                     value: true,
-                    message: "Name is required",
+                    message: "Name is Required",
                   },
                 })}
-                placeholder="Enter name"
+                placeholder="Enter Name"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.name ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -109,14 +109,14 @@ const RegisterPage = () => {
                   pattern: {
                     value:
                       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    message: "Enter a valid email",
+                    message: "Enter a Valid Email",
                   },
                   required: {
                     value: true,
-                    message: "Email is required",
+                    message: "Email is Required",
                   },
                 })}
-                placeholder="Enter email"
+                placeholder="Enter Email"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.email ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -140,14 +140,14 @@ const RegisterPage = () => {
                 {...register("password", {
                   required: {
                     value: true,
-                    message: "Password is required",
+                    message: "Password is Required",
                   },
                   minLength: {
                     value: 6,
-                    message: "Password length must be at least 6 characters",
+                    message: "Password Length must be at Least 6 Characters Long",
                   },
                 })}
-                placeholder="Enter password"
+                placeholder="Enter Password"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.password ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -171,15 +171,15 @@ const RegisterPage = () => {
                 {...register("confirmPassword", {
                   required: {
                     value: true,
-                    message: "Confirm password is required",
+                    message: "Confirm Password is Required",
                   },
                   validate: (value) => {
                     if (value !== password) {
-                      return "Passwords do not match";
+                      return "Passwords does not Match";
                     }
                   },
                 })}
-                placeholder="Enter confirm password"
+                placeholder="Enter Confirm Password"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.confirmPassword ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -198,9 +198,9 @@ const RegisterPage = () => {
               Register
             </button>
             <p className="text-sm font-semibold text-[#5a7184]">
-              You have an account?{" "}
+              You have an Account?{" "}
               <Link to="/login" className="text-primary">
-                Login now
+                Login Now
               </Link>
             </p>
           </form>

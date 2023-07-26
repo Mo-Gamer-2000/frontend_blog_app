@@ -3,6 +3,7 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+
 import { images } from "../constants";
 import { logout } from "../store/actions/user";
 
@@ -13,8 +14,8 @@ const navItemsInfo = [
     name: "Pages",
     type: "dropdown",
     items: [
-      { title: "About us", href: "/about" },
-      { title: "Contact us", href: "/contact" },
+      { title: "About Us", href: "/about" },
+      { title: "Contact Us", href: "/contact" },
     ],
   },
   { name: "Pricing", type: "link", href: "/pricing" },
@@ -94,7 +95,7 @@ const Header = () => {
     <section className="sticky top-0 left-0 right-0 z-50 bg-white">
       <header className="container mx-auto px-5 flex justify-between py-4 items-center">
         <Link to="/">
-          <img className="w-[110px]" src={images.Logo} alt="logo" />
+          <img className="w-[120px]" src={images.Logo} alt="logo" />
         </Link>
         <div className="lg:hidden z-50">
           {navIsVisible ? (

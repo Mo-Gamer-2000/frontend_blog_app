@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { HiOutlineCamera } from "react-icons/hi";
+
 import { stables } from "../constants";
 import CropEasy from "./crop/CropEasy";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfilePicture } from "../services/index/users";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -28,7 +29,7 @@ const ProfilePicture = ({ avatar }) => {
       setOpenCrop(false);
       localStorage.setItem("account", JSON.stringify(data));
       queryClient.invalidateQueries(["profile"]);
-      toast.success("Profile Photo is Deleted");
+      toast.success("Profile Photo is removed");
     },
     onError: (error) => {
       toast.error(error.message);
@@ -43,10 +44,11 @@ const ProfilePicture = ({ avatar }) => {
   };
 
   const handleDeleteImage = () => {
-    if (window.confirm("Do you want to Delete your Profile Picture?")) {
+    if (window.confirm("Do you want to delete your profile picture")) {
       try {
         const formData = new FormData();
         formData.append("profilePicture", undefined);
+
         mutate({ token: userState.userInfo.token, formData: formData });
       } catch (error) {
         toast.error(error.message);
@@ -54,6 +56,7 @@ const ProfilePicture = ({ avatar }) => {
       }
     }
   };
+
   return (
     <>
       {openCrop &&
@@ -61,6 +64,7 @@ const ProfilePicture = ({ avatar }) => {
           <CropEasy photo={photo} setOpenCrop={setOpenCrop} />,
           document.getElementById("portal")
         )}
+
       <div className="w-full flex items-center gap-x-4">
         <div className="relative w-20 h-20 rounded-full outline outline-offset-2 outline-1 lutline-primary overflow-hidden">
           <label
@@ -89,7 +93,7 @@ const ProfilePicture = ({ avatar }) => {
         <button
           onClick={handleDeleteImage}
           type="button"
-          className="border border-red-500 rounded-lg px-4 py-2 text-red-500 hover:bg-red-500 hover:text-white"
+          className="border border-red-500 rounded-lg px-4 py-2 text-red-500"
         >
           Delete
         </button>

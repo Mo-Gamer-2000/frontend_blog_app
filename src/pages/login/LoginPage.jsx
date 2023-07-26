@@ -77,10 +77,10 @@ const LoginPage = () => {
                   },
                   required: {
                     value: true,
-                    message: "Email is required",
+                    message: "Email is Required",
                   },
                 })}
-                placeholder="Enter email"
+                placeholder="Enter Email"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.email ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -104,14 +104,14 @@ const LoginPage = () => {
                 {...register("password", {
                   required: {
                     value: true,
-                    message: "Password is required",
+                    message: "Password is Required",
                   },
                   minLength: {
                     value: 6,
-                    message: "Password length must be at least 6 characters",
+                    message: "Password Length must be at Least 6 Characters Long",
                   },
                 })}
-                placeholder="Enter password"
+                placeholder="Enter Password"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.password ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -126,7 +126,7 @@ const LoginPage = () => {
               to="/forget-password"
               className="text-sm font-semibold text-primary"
             >
-              Forgot password?
+              Forgot Password?
             </Link>
             <button
               type="submit"
@@ -136,9 +136,9 @@ const LoginPage = () => {
               Sign In
             </button>
             <p className="text-sm font-semibold text-[#5a7184]">
-              Do not have an account?{" "}
+              Do not have an Account?{" "}
               <Link to="/register" className="text-primary">
-                Register now
+                Register Now
               </Link>
             </p>
           </form>

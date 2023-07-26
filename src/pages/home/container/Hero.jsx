@@ -1,5 +1,6 @@
 import React from "react";
 import { FiSearch } from "react-icons/fi";
+
 import { images } from "../../../constants";
 
 const Hero = () => {
@@ -32,13 +33,13 @@ const Hero = () => {
           </span>
           <ul className="flex flex-wrap gap-x-2.5 gap-y-2.5 mt-3 lg:text-sm xl:text-base">
             <li className="rounded-lg bg-primary bg-opacity-10 px-3 py-1.5 text-primary font-semibold">
-              Artificial Intelligence
+              Design
             </li>
             <li className="rounded-lg bg-primary bg-opacity-10 px-3 py-1.5 text-primary font-semibold">
-              UI/UX Design
+              User Experience
             </li>
             <li className="rounded-lg bg-primary bg-opacity-10 px-3 py-1.5 text-primary font-semibold">
-              Programming
+              User Interfaces
             </li>
           </ul>
         </div>

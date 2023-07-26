@@ -1,5 +1,6 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
+
 import ArticleCard from "../../../components/ArticleCard";
 import { useQuery } from "@tanstack/react-query";
 import { getAllPosts } from "../../../services/index/posts";
@@ -28,7 +29,7 @@ const Articles = () => {
             />
           ))
         ) : isError ? (
-          <ErrorMessage message="Oops! We're having trouble loading the posts right now. Please try again in a few moments." />
+          <ErrorMessage message="Couldn't fetch the posts data" />
         ) : (
           data.map((post) => (
             <ArticleCard
@@ -40,7 +41,7 @@ const Articles = () => {
         )}
       </div>
       <button className="mx-auto flex items-center gap-x-2 font-bold text-primary border-2 border-primary px-6 py-3 rounded-lg">
-        <span>More Articles</span>
+        <span>More articles</span>
         <FaArrowRight className="w-3 h-3" />
       </button>
     </section>
