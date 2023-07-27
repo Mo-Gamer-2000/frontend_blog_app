@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const NavItemCollapse = ({
@@ -10,6 +10,12 @@ const NavItemCollapse = ({
   setActiveNavName,
 }) => {
   const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    if (activeNavName !== name) {
+      setIsChecked(false);
+    }
+  }, [activeNavName, name]);
   return (
     <div className="collapse collapse-arrow bg-base-200 min-h-0 rounded-none py-2">
       <input
