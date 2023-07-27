@@ -1,10 +1,48 @@
 import { Link } from "react-router-dom";
 import { images } from "../../../../constants";
 import { useState } from "react";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { AiFillDashboard, AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { FaComments } from "react-icons/fa";
+import { MdDashboard } from "react-icons/md";
+import NavItem from "./NavItem";
+import NavItemCollapse from "./NavItemCollapse";
+
+const MENU_ITEMS = [
+  {
+    title: "Dashboard",
+    link: "/admin",
+    icon: <AiFillDashboard className="text-xl" />,
+    name: "dashboard",
+    type: "link",
+  },
+  {
+    title: "Comments",
+    link: "/admin/comments",
+    icon: <FaComments className="text-xl" />,
+    name: "comments",
+    type: "link",
+  },
+  {
+    title: "Posts",
+    content: [
+      {
+        title: "New",
+        link: "/admin/posts/new",
+      },
+      {
+        title: "Manage",
+        link: "/admin/posts/manage",
+      },
+    ],
+    icon: <MdDashboard className="text-xl" />,
+    name: "posts",
+    type: "collapse",
+  },
+];
 
 const Header = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
+  const [activeNavName, setActiveNavName] = useState("dashboard");
 
   const toggleMenuHandler = () => {
     setIsMenuActive((prevState) => !prevState);
@@ -37,6 +75,33 @@ const Header = () => {
             <Link to="/">
               <img src={images.Logo} alt="logo" className="w-16" />
             </Link>
+            <h4 className="mt-10 font-bold text-[#c7c7c7]">MAIN MENU</h4>
+            {/* menu items */}
+            <div className="mt-6 flex flex-col gap-y-[0.563rem]">
+              {MENU_ITEMS.map((item) =>
+                item.type === "link" ? (
+                  <NavItem
+                    key={item.title}
+                    title={item.title}
+                    link={item.link}
+                    icon={item.icon}
+                    name={item.name}
+                    activeNavName={activeNavName}
+                    setActiveNavName={setActiveNavName}
+                  />
+                ) : (
+                  <NavItemCollapse
+                    key={item.title}
+                    title={item.title}
+                    content={item.content}
+                    icon={item.icon}
+                    name={item.name}
+                    activeNavName={activeNavName}
+                    setActiveNavName={setActiveNavName}
+                  />
+                )
+              )}
+            </div>
           </div>
         </div>
       )}
