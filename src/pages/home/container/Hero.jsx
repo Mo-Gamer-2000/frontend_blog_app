@@ -33,13 +33,13 @@ const Hero = () => {
           </span>
           <ul className="flex flex-wrap gap-x-2.5 gap-y-2.5 mt-3 lg:text-sm xl:text-base">
             <li className="rounded-lg bg-primary bg-opacity-10 px-3 py-1.5 text-primary font-semibold">
-              Design
+              UI/UX Design
             </li>
             <li className="rounded-lg bg-primary bg-opacity-10 px-3 py-1.5 text-primary font-semibold">
-              User Experience
+              Artificial Intelligence (AI)
             </li>
             <li className="rounded-lg bg-primary bg-opacity-10 px-3 py-1.5 text-primary font-semibold">
-              User Interfaces
+              Software Development
             </li>
           </ul>
         </div>
