@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import { getUserProfile, updateProfile } from "../../services/index/users";
 import ProfilePicture from "../../components/ProfilePicture";
 import { userActions } from "../../store/reducers/userReducers";
 import { toast } from "react-hot-toast";
+import { useMemo } from "react";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -16,11 +17,7 @@ const ProfilePage = () => {
   const queryClient = useQueryClient();
   const userState = useSelector((state) => state.user);
 
-  const {
-    data: profileData,
-    isLoading: profileIsLoading,
-    error: profileError,
-  } = useQuery({
+  const { data: profileData, isLoading: profileIsLoading } = useQuery({
     queryFn: () => {
       return getUserProfile({ token: userState.userInfo.token });
     },
@@ -38,7 +35,7 @@ const ProfilePage = () => {
       dispatch(userActions.setUserInfo(data));
       localStorage.setItem("account", JSON.stringify(data));
       queryClient.invalidateQueries(["profile"]);
-      toast.success("Profile has been Updated");
+      toast.success("Profile is updated");
     },
     onError: (error) => {
       toast.error(error.message);
@@ -95,14 +92,14 @@ const ProfilePage = () => {
                 {...register("name", {
                   minLength: {
                     value: 1,
-                    message: "Name Length must be at Least 1 Character Long",
+                    message: "Name length must be at least 1 character",
                   },
                   required: {
                     value: true,
-                    message: "Name is Required",
+                    message: "Name is required",
                   },
                 })}
-                placeholder="Enter Name"
+                placeholder="Enter name"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.name ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -131,10 +128,10 @@ const ProfilePage = () => {
                   },
                   required: {
                     value: true,
-                    message: "Email is Required",
+                    message: "Email is required",
                   },
                 })}
-                placeholder="Enter Email"
+                placeholder="Enter email"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.email ? "border-red-500" : "border-[#c3cad9]"
                 }`}
@@ -156,7 +153,7 @@ const ProfilePage = () => {
                 type="password"
                 id="password"
                 {...register("password")}
-                placeholder="Enter New Password"
+                placeholder="Enter new password"
                 className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
                   errors.password ? "border-red-500" : "border-[#c3cad9]"
                 }`}
