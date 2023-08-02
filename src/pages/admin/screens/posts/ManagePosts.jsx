@@ -36,6 +36,7 @@ const ManagePosts = () => {
 
   const submitSearchKeywordHandler = (e) => {
     e.preventDefault();
+    setCurrentPage(1);
     refetch();
   };
 
