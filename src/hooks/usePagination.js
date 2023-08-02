@@ -50,7 +50,13 @@ export const usePagination = ({
 
       return [firstPageIndex, DOTS, ...rightRange];
     }
-  }, [totalCount, pageSize, siblingCount, currentPage, totalPageCount]);
+
+    // State 4: Both left & right dots to be visible
+    if (shouldShowLeftDots && shouldShowRightDots) {
+      let middleRange = range(leftSiblingIndex, rightSiblingIndex);
+      return [firstPageIndex, DOTS, middleRange, DOTS, lastPageIndex];
+    }
+  }, [siblingCount, currentPage, totalPageCount]);
 
   return paginationRange;
 };
