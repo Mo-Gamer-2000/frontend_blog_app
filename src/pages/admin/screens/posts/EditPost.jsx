@@ -84,6 +84,13 @@ const EditPost = () => {
     });
   };
 
+  const handleDeleteImage = () => {
+    if (window.confirm("Wpuld you Like to Delete the Post Picture?")) {
+      setInitialPhoto(null);
+      setPhoto(null);
+    }
+  };
+
   return (
     <div>
       {isLoading ? (
@@ -118,6 +125,13 @@ const EditPost = () => {
               id="postPicture"
               onChange={handleFileChange}
             />
+            <button
+              type="button"
+              onClick={handleDeleteImage}
+              className="w-fit bg-red-500 text-sm text-white font-semibold rounded-lg px-2 py-1 mt-5"
+            >
+              Delete Image
+            </button>
             <div className="mt-4 flex gap-2">
               {data?.categories.map((category) => (
                 <Link
@@ -136,7 +150,7 @@ const EditPost = () => {
               disabled={isLoadingUpdatePostDetail}
               type="button"
               onClick={handleUpdatePost}
-              className="w-full bg-green-500 text-white font-semibold rounded-lg px-4 py-2 disabled:cursor-not-allowed opacity-70"
+              className="w-full bg-green-600 text-white font-semibold rounded-lg px-4 py-2 disabled:cursor-not-allowed opacity-70"
             >
               Update Post
             </button>
