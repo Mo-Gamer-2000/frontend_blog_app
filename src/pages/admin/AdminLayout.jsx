@@ -21,13 +21,13 @@ const AdminLayout = () => {
     onSuccess: (data) => {
       if (!data?.admin) {
         navigate("/");
-        toast.error("You are not Authorized to Access, Admin Panel");
+        toast.error("Your are not allowed to access admin panel");
       }
     },
     onError: (err) => {
       console.log(err);
       navigate("/");
-      toast.error("You are not Authorized to Access, Admin Panel");
+      toast.error("Your are not allowed to access admin panel");
     },
   });
 

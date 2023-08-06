@@ -16,6 +16,7 @@
     "@uidotdev/usehooks": "^2.0.1",
     "axios": "^1.4.0",
     "html-react-parser": "^4.2.0",
+    "lowlight": "^2.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-easy-crop": "^5.0.0",

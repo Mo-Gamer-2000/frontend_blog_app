@@ -1,10 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { images, stables } from "../../../../constants";
 import { deletePost, getAllPosts } from "../../../../services/index/posts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pagination from "../../../../components/Pagination";
-import { useEffect } from "react";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -35,8 +34,8 @@ const ManagePosts = () => {
         });
       },
       onSuccess: (data) => {
-        queryClient.invalidateQueries(["post"]);
-        toast.success("Post is Deleted");
+        queryClient.invalidateQueries(["posts"]);
+        toast.success("Post is deleted");
       },
       onError: (error) => {
         toast.error(error.message);
@@ -63,13 +62,13 @@ const ManagePosts = () => {
     refetch();
   };
 
-  const deletePostHnadler = ({ slug, token }) => {
+  const deletePostHandler = ({ slug, token }) => {
     mutateDeletePost({ slug, token });
   };
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold">Manage Posts</h1>
+      <h1 className="text-2xl font-semibold">Mange Posts</h1>
 
       <div className="w-full px-4 mx-auto">
         <div className="py-8">
@@ -85,7 +84,7 @@ const ManagePosts = () => {
                     type="text"
                     id='"form-subscribe-Filter'
                     className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                    placeholder="Search Post..."
+                    placeholder="Post title..."
                     onChange={searchKeywordHandler}
                     value={searchKeyword}
                   />
@@ -144,7 +143,7 @@ const ManagePosts = () => {
                   ) : postsData?.data?.length === 0 ? (
                     <tr>
                       <td colSpan={5} className="text-center py-10 w-full">
-                        No Posts Found
+                        No posts found
                       </td>
                     </tr>
                   ) : (
@@ -177,13 +176,13 @@ const ManagePosts = () => {
                           <p className="text-gray-900 whitespace-no-wrap">
                             {post.categories.length > 0
                               ? post.categories[0]
-                              : "Uncategorised"}
+                              : "Uncategorized"}
                           </p>
                         </td>
                         <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                           <p className="text-gray-900 whitespace-no-wrap">
                             {new Date(post.createdAt).toLocaleDateString(
-                              "en-GB",
+                              "en-US",
                               {
                                 day: "numeric",
                                 month: "short",
@@ -201,7 +200,7 @@ const ManagePosts = () => {
                                     {post.tags.length - 1 !== index && ","}
                                   </p>
                                 ))
-                              : "No Tags"}
+                              : "No tags"}
                           </div>
                         </td>
                         <td className="px-5 py-5 text-sm bg-white border-b border-gray-200 space-x-5">
@@ -210,7 +209,7 @@ const ManagePosts = () => {
                             type="button"
                             className="text-red-600 hover:text-red-900 disabled:opacity-70 disabled:cursor-not-allowed"
                             onClick={() => {
-                              deletePostHnadler({
+                              deletePostHandler({
                                 slug: post?.slug,
                                 token: userState.userInfo.token,
                               });

@@ -7,7 +7,7 @@ import ErrorMessage from "../../../../components/ErrorMessage";
 import parseJsonToHtml from "../../../../utils/parseJsonToHtml";
 import { stables } from "../../../../constants";
 import { HiOutlineCamera } from "react-icons/hi";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
 
 const EditPost = () => {
@@ -36,7 +36,7 @@ const EditPost = () => {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries(["blog", slug]);
-      toast.success("Post is Updated");
+      toast.success("Post is updated");
     },
     onError: (error) => {
       toast.error(error.message);
@@ -63,8 +63,8 @@ const EditPost = () => {
       updatedData.append("postPicture", photo);
     } else if (initialPhoto && !photo) {
       const urlToObject = async (url) => {
-        let response = await fetch(url);
-        let blob = await response.blob();
+        let reponse = await fetch(url);
+        let blob = await reponse.blob();
         const file = new File([blob], initialPhoto, { type: blob.type });
         return file;
       };
@@ -85,7 +85,7 @@ const EditPost = () => {
   };
 
   const handleDeleteImage = () => {
-    if (window.confirm("Wpuld you Like to Delete the Post Picture?")) {
+    if (window.confirm("Do you want to delete your Post picture?")) {
       setInitialPhoto(null);
       setPhoto(null);
     }
@@ -96,7 +96,7 @@ const EditPost = () => {
       {isLoading ? (
         <ArticleDetailSkeleton />
       ) : isError ? (
-        <ErrorMessage message="Unable to Fetch the Post Data" />
+        <ErrorMessage message="Couldn't fetch the post detail" />
       ) : (
         <section className="container mx-auto max-w-5xl flex flex-col px-5 py-5 lg:flex-row lg:gap-x-5 lg:items-start">
           <article className="flex-1">
@@ -150,7 +150,7 @@ const EditPost = () => {
               disabled={isLoadingUpdatePostDetail}
               type="button"
               onClick={handleUpdatePost}
-              className="w-full bg-green-600 text-white font-semibold rounded-lg px-4 py-2 disabled:cursor-not-allowed opacity-70"
+              className="w-full bg-green-500 text-white font-semibold rounded-lg px-4 py-2 disabled:cursor-not-allowed disabled:opacity-70"
             >
               Update Post
             </button>
