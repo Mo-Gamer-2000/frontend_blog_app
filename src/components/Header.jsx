@@ -26,9 +26,7 @@ const NavItem = ({ item }) => {
   const [dropdown, setDropdown] = useState(false);
 
   const toggleDropdownHandler = () => {
-    setDropdown((curState) => {
-      return !curState;
-    });
+    setDropdown((prevState) => !prevState);
   };
 
   return (
@@ -79,7 +77,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const [navIsVisible, setNavIsVisible] = useState(false);
   const userState = useSelector((state) => state.user);
-  const [profileDrowpdown, setProfileDrowpdown] = useState(false);
+  const [profileDropdown, setProfileDropdown] = useState(false);
 
   const navVisibilityHandler = () => {
     setNavIsVisible((curState) => {
@@ -123,14 +121,14 @@ const Header = () => {
                 <div className="flex flex-col items-center">
                   <button
                     className="flex gap-x-1 items-center mt-5 lg:mt-0 border-2 border-blue-500 px-6 py-2 rounded-full text-blue-500 font-semibold hover:bg-blue-500 hover:text-white transition-all duration-300"
-                    onClick={() => setProfileDrowpdown(!profileDrowpdown)}
+                    onClick={() => setProfileDropdown(!profileDropdown)}
                   >
                     <span>Account</span>
                     <MdKeyboardArrowDown />
                   </button>
                   <div
                     className={`${
-                      profileDrowpdown ? "block" : "hidden"
+                      profileDropdown ? "block" : "hidden"
                     } lg:hidden transition-all duration-500 pt-4 lg:absolute lg:bottom-0 lg:right-0 lg:transform lg:translate-y-full lg:group-hover:block w-max`}
                   >
                     <ul className="bg-dark-soft lg:bg-transparent text-center flex flex-col shadow-lg rounded-lg overflow-hidden">

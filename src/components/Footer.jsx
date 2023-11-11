@@ -88,7 +88,7 @@ const Footer = () => {
         <div className="col-span-10 md:order-first md:col-span-4 lg:col-span-2">
           <img
             src={images.Logo}
-            alt="logo"
+            alt="Your Descriptive Alt Text Here"
             className="mx-auto md:mx-0 rounded-lg w-52"
           />
           <p className="text-sm text-dark-light text-center mt-4 md:text-left md:text-base lg:text-sm">
@@ -96,27 +96,27 @@ const Footer = () => {
           </p>
           <ul className="flex justify-center items-center mt-5 space-x-4 text-gray-300 md:justify-start">
             <li>
-              <a href="/">
+              <a href="/" aria-label="Twitter">
                 <AiOutlineTwitter className="w-6 h-auto" />
               </a>
             </li>
             <li>
-              <a href="/">
+              <a href="/" aria-label="YouTube">
                 <AiFillYoutube className="w-6 h-auto" />
               </a>
             </li>
             <li>
-              <a href="/">
+              <a href="/" aria-label="Instagram">
                 <AiFillInstagram className="w-6 h-auto" />
               </a>
             </li>
             <li>
-              <a href="/">
+              <a href="/" aria-label="Facebook">
                 <FaFacebook className="w-6 h-auto" />
               </a>
             </li>
             <li>
-              <a href="/">
+              <a href="/" aria-label="Telegram">
                 <BsTelegram className="w-6 h-auto" />
               </a>
             </li>
