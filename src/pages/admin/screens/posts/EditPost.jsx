@@ -41,7 +41,7 @@ const EditPost = () => {
     queryKey: ["blog", slug],
     onSuccess: (data) => {
       setInitialPhoto(data?.photo);
-      setCategories(data.categories.map((item) => item.value));
+      setCategories(data.categories.map((item) => item._id));
       setTitle(data.title);
       setTags(data.tags);
     },
