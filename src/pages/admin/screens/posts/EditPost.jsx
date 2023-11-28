@@ -35,6 +35,7 @@ const EditPost = () => {
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState(null);
   const [postSlug, setPostSlug] = useState(slug);
+  const [caption, setCaption] = useState("");
 
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getSinglePost({ slug }),
@@ -44,6 +45,9 @@ const EditPost = () => {
       setCategories(data.categories.map((item) => item._id));
       setTitle(data.title);
       setTags(data.tags);
+      // 2x below
+      setPostSlug(data.slug);
+      setCaption(data.caption);
     },
   });
 
@@ -95,7 +99,7 @@ const EditPost = () => {
 
     updatedData.append(
       "document",
-      JSON.stringify({ body, categories, title, tags, slug: postSlug })
+      JSON.stringify({ body, categories, title, tags, slug: postSlug, caption })
     );
 
     mutateUpdatePostDetail({
@@ -123,6 +127,7 @@ const EditPost = () => {
       ) : (
         <section className="container mx-auto max-w-5xl flex flex-col px-5 py-5 lg:flex-row lg:gap-x-5 lg:items-start">
           <article className="flex-1">
+            {/* IMAGE / LABEL */}
             <label htmlFor="postPicture" className="w-full cursor-pointer">
               {photo ? (
                 <img
@@ -142,12 +147,16 @@ const EditPost = () => {
                 </div>
               )}
             </label>
+
+            {/* INPUT */}
             <input
               type="file"
               className="sr-only"
               id="postPicture"
               onChange={handleFileChange}
             />
+
+            {/* DELETE POST */}
             <button
               type="button"
               onClick={handleDeleteImage}
@@ -155,6 +164,8 @@ const EditPost = () => {
             >
               Delete Image
             </button>
+
+            {/* LINK */}
             <div className="mt-4 flex gap-2">
               {data?.categories.map((category) => (
                 <Link
@@ -165,6 +176,8 @@ const EditPost = () => {
                 </Link>
               ))}
             </div>
+
+            {/* TITLE */}
             <div className="d-form-control w-full">
               <label className="d-label" htmlFor="title">
                 <span className="d-label-text text-xl font-semibold">
@@ -179,6 +192,24 @@ const EditPost = () => {
                 placeholder="Title"
               />
             </div>
+
+            {/* CAPTION */}
+            <div className="d-form-control w-full">
+              <label className="d-label" htmlFor="caption">
+                <span className="d-label-text text-xl font-semibold">
+                  Caption
+                </span>
+              </label>
+              <input
+                id="caption"
+                value={caption}
+                className="d-input d-input-bordered border-slate-300 !outline-slate-300 text-xl font-medium font-roboto text-dark-hard"
+                onChange={(e) => setCaption(e.target.value)}
+                placeholder="Caption"
+              />
+            </div>
+
+            {/* SLUG */}
             <div className="d-form-control w-full">
               <label className="d-label" htmlFor="slug">
                 <span className="d-label-text text-xl font-semibold">Slug</span>
@@ -193,6 +224,8 @@ const EditPost = () => {
                 placeholder="Post slug"
               />
             </div>
+
+            {/* CATEGORIES */}
             <div className="w-full mb-5 mt-2">
               <label className="d-label">
                 <span className="d-label-text text-xl font-semibold">
@@ -209,6 +242,8 @@ const EditPost = () => {
                 />
               )}
             </div>
+
+            {/* TAGS */}
             <div className="w-full mb-5 mt-2">
               <label className="d-label">
                 <span className="d-label-text text-xl font-semibold">Tags</span>
@@ -227,6 +262,8 @@ const EditPost = () => {
                 />
               )}
             </div>
+
+            {/* EDITOR */}
             <div className="w-full -mb-5 -mt-2">
               <label className="d-label">
                 <span className="d-label-text text-xl font-semibold">
@@ -243,6 +280,8 @@ const EditPost = () => {
                 />
               )}
             </div>
+
+            {/* UPDATE POST */}
             <button
               disabled={isLoadingUpdatePostDetail}
               type="button"
