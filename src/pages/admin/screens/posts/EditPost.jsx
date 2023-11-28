@@ -49,6 +49,7 @@ const EditPost = () => {
       setPostSlug(data.slug);
       setCaption(data.caption);
     },
+    refetchOnWindowFocus: false,
   });
 
   const {
