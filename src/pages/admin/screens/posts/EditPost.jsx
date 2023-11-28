@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import CreatableSelect from "react-select/creatable";
 import { getSinglePost, updatePost } from "../../../../services/index/posts";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import ArticleDetailSkeleton from "../../../articleDetail/components/ArticleDetailSkeleton";
 import ErrorMessage from "../../../../components/ErrorMessage";
 import { stables } from "../../../../constants";
@@ -26,6 +26,7 @@ const promiseOptions = async (inputValue) => {
 const EditPost = () => {
   const { slug } = useParams();
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const userState = useSelector((state) => state.user);
   const [initialPhoto, setInitialPhoto] = useState(null);
   const [photo, setPhoto] = useState(null);
@@ -33,6 +34,7 @@ const EditPost = () => {
   const [categories, setCategories] = useState(null);
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState(null);
+  const [postSlug, setPostSlug] = useState(slug);
 
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getSinglePost({ slug }),
@@ -59,6 +61,7 @@ const EditPost = () => {
     onSuccess: (data) => {
       queryClient.invalidateQueries(["blog", slug]);
       toast.success("Post is updated");
+      navigate(`/admin/posts/manage/edit/${data.slug}`, { replace: true });
     },
     onError: (error) => {
       toast.error(error.message);
@@ -92,7 +95,7 @@ const EditPost = () => {
 
     updatedData.append(
       "document",
-      JSON.stringify({ body, categories, title, tags })
+      JSON.stringify({ body, categories, title, tags, slug: postSlug })
     );
 
     mutateUpdatePostDetail({
@@ -174,6 +177,20 @@ const EditPost = () => {
                 className="d-input d-input-bordered border-slate-300 !outline-slate-300 text-xl font-medium font-roboto text-dark-hard"
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Title"
+              />
+            </div>
+            <div className="d-form-control w-full">
+              <label className="d-label" htmlFor="slug">
+                <span className="d-label-text text-xl font-semibold">Slug</span>
+              </label>
+              <input
+                id="slug"
+                value={postSlug}
+                className="d-input d-input-bordered border-slate-300 !outline-slate-300 text-xl font-medium font-roboto text-dark-hard"
+                onChange={(e) =>
+                  setPostSlug(e.target.value.replace(/\s+/g, "-").toLowerCase())
+                }
+                placeholder="Post slug"
               />
             </div>
             <div className="w-full mb-5 mt-2">
