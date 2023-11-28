@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import CreatableSelect from "react-select/creatable";
 import { getSinglePost, updatePost } from "../../../../services/index/posts";
 import { Link, useParams } from "react-router-dom";
 import ArticleDetailSkeleton from "../../../articleDetail/components/ArticleDetailSkeleton";
@@ -30,10 +31,18 @@ const EditPost = () => {
   const [photo, setPhoto] = useState(null);
   const [body, setBody] = useState(null);
   const [categories, setCategories] = useState(null);
+  const [title, setTitle] = useState("");
+  const [tags, setTags] = useState(null);
 
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getSinglePost({ slug }),
     queryKey: ["blog", slug],
+    onSuccess: (data) => {
+      setInitialPhoto(data?.photo);
+      setCategories(data.categories.map((item) => item.value));
+      setTitle(data.title);
+      setTags(data.tags);
+    },
   });
 
   const {
@@ -56,13 +65,6 @@ const EditPost = () => {
       console.log(error);
     },
   });
-
-  useEffect(() => {
-    if (!isLoading && !isError) {
-      setInitialPhoto(data?.photo);
-      setCategories(data.categories.map((item) => item.value));
-    }
-  }, [data, isError, isLoading]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -88,7 +90,10 @@ const EditPost = () => {
       updatedData.append("postPicture", picture);
     }
 
-    updatedData.append("document", JSON.stringify({ body, categories }));
+    updatedData.append(
+      "document",
+      JSON.stringify({ body, categories, title, tags })
+    );
 
     mutateUpdatePostDetail({
       updatedData,
@@ -143,7 +148,7 @@ const EditPost = () => {
             <button
               type="button"
               onClick={handleDeleteImage}
-              className="w-fit bg-red-500 text-sm text-white font-semibold rounded-lg px-2 py-1 mt-5"
+              className="w-fit bg-red-500 hover:bg-red-600 text-sm text-white font-semibold rounded-lg px-2 py-2 mt-14 -mb-20"
             >
               Delete Image
             </button>
@@ -157,10 +162,26 @@ const EditPost = () => {
                 </Link>
               ))}
             </div>
-            <h1 className="text-xl font-medium font-roboto mt-4 text-dark-hard md:text-[26px]">
-              {data?.title}
-            </h1>
-            <div className="my-5">
+            <div className="d-form-control w-full">
+              <label className="d-label" htmlFor="title">
+                <span className="d-label-text text-xl font-semibold">
+                  Title
+                </span>
+              </label>
+              <input
+                id="title"
+                value={title}
+                className="d-input d-input-bordered border-slate-300 !outline-slate-300 text-xl font-medium font-roboto text-dark-hard"
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Title"
+              />
+            </div>
+            <div className="w-full mb-5 mt-2">
+              <label className="d-label">
+                <span className="d-label-text text-xl font-semibold">
+                  Categories
+                </span>
+              </label>
               {isPostDataLoaded && (
                 <MultiSelectTagDropdown
                   loadOptions={promiseOptions}
@@ -171,7 +192,30 @@ const EditPost = () => {
                 />
               )}
             </div>
-            <div className="w-full">
+            <div className="w-full mb-5 mt-2">
+              <label className="d-label">
+                <span className="d-label-text text-xl font-semibold">Tags</span>
+              </label>
+              {isPostDataLoaded && (
+                <CreatableSelect
+                  defaultValue={data.tags.map((tag) => ({
+                    value: tag,
+                    label: tag,
+                  }))}
+                  isMulti={true}
+                  onChange={(newValue) =>
+                    setTags(newValue.map((item) => item.value))
+                  }
+                  className="relative z-20"
+                />
+              )}
+            </div>
+            <div className="w-full -mb-5 -mt-2">
+              <label className="d-label">
+                <span className="d-label-text text-xl font-semibold">
+                  Editor
+                </span>
+              </label>
               {isPostDataLoaded && (
                 <Editor
                   content={data?.body}
@@ -186,7 +230,7 @@ const EditPost = () => {
               disabled={isLoadingUpdatePostDetail}
               type="button"
               onClick={handleUpdatePost}
-              className="w-full bg-green-500 text-white font-semibold rounded-lg px-4 py-2 disabled:cursor-not-allowed disabled:opacity-70"
+              className="w-full bg-green-500 hover:bg-green-600 mt-8 text-white font-semibold rounded-lg px-4 py-2 disabled:cursor-not-allowed disabled:opacity-70"
             >
               Update Post
             </button>
