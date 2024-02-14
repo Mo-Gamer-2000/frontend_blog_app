@@ -89,7 +89,7 @@ const ManagePosts = () => {
           </td>
           <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
             <p className="text-gray-900 whitespace-no-wrap">
-              {new Date(post.createdAt).toLocaleDateString("en-US", {
+              {new Date(post.createdAt).toLocaleDateString("en-UK", {
                 day: "numeric",
                 month: "short",
                 year: "numeric",

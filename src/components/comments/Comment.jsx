@@ -47,7 +47,7 @@ const Comment = ({
           {comment.user.name}
         </h5>
         <span className="text-xs text-dark-light">
-          {new Date(comment.createdAt).toLocaleDateString("en-US", {
+          {new Date(comment.createdAt).toLocaleDateString("en-UK", {
             day: "numeric",
             month: "short",
             year: "numeric",

@@ -30,7 +30,7 @@ const SuggestedPosts = ({ className, header, posts = [], tags }) => {
                 <Link to={`/blog/${item.slug}`}>{item.title}</Link>
               </h3>
               <span className="text-xs opacity-60">
-                {new Date(item.createdAt).toLocaleDateString("en-US", {
+                {new Date(item.createdAt).toLocaleDateString("en-UK", {
                   day: "numeric",
                   month: "short",
                   year: "numeric",
