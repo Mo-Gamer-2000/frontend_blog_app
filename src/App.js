@@ -19,6 +19,7 @@ import Comments from "./pages/admin/screens/comments/Comments";
 import ManagePosts from "./pages/admin/screens/posts/ManagePosts";
 import EditPost from "./pages/admin/screens/posts/EditPost";
 import Categories from "./pages/admin/screens/categories/Categories";
+import EditCategories from "./pages/admin/screens/categories/EditCategories";
 
 function App() {
   return (
@@ -46,8 +47,12 @@ function App() {
           {/* Admin routes for comments and posts management. */}
           <Route path="comments" element={<Comments />} />
           <Route path="posts/manage" element={<ManagePosts />} />
-          <Route path="categories/manage" element={<Categories />} />
           <Route path="posts/manage/edit/:slug" element={<EditPost />} />
+          <Route path="categories/manage" element={<Categories />} />
+          <Route
+            path="categories/manage/edit/:slug"
+            element={<EditCategories />}
+          />
         </Route>
       </Routes>
 
