@@ -1,20 +1,15 @@
 /* Importing the base styles from Tailwind CSS. */
 @tailwind base;
 
-/* Importing the components styles from Tailwind CSS. */
 @tailwind components;
 
-/* Importing utility styles from Tailwind CSS. */
 @tailwind utilities;
 
-/* Define custom component styles. */
 @layer components {
-  /* Style for an editor button. */
   .editor-btn {
     @apply flex justify-center items-center text-slate-700 rounded-lg w-8 aspect-square;
   }
 
-  /* Style for an active editor button. */
   .active-editor-btn {
     @apply text-slate-800 bg-slate-200;
   }

@@ -1,18 +1,11 @@
-// Importing necessary libraries and components for routing and toasts.
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-
-// Importing the main stylesheet for the application.
 import "./App.css";
-
-// Importing various page components used within the app.
 import ArticleDetailPage from "./pages/articleDetail/ArticleDetailPage";
 import HomePage from "./pages/home/HomePage";
 import RegisterPage from "./pages/register/RegisterPage";
 import LoginPage from "./pages/login/LoginPage";
 import ProfilePage from "./pages/profile/ProfilePage";
-
-// Importing admin-related components and screens.
 import AdminLayout from "./pages/admin/AdminLayout";
 import Admin from "./pages/admin/screens/Admin";
 import Comments from "./pages/admin/screens/comments/Comments";
@@ -20,11 +13,11 @@ import ManagePosts from "./pages/admin/screens/posts/ManagePosts";
 import EditPost from "./pages/admin/screens/posts/EditPost";
 import Categories from "./pages/admin/screens/categories/Categories";
 import EditCategories from "./pages/admin/screens/categories/EditCategories";
+import Users from "./pages/admin/screens/users/Users";
 
 function App() {
   return (
     <div className="App font-opensans">
-      {/* Setting up the routes for the application. */}
       <Routes>
         {/* Main home route. */}
         <Route index path="/" element={<HomePage />} />
@@ -53,6 +46,7 @@ function App() {
             path="categories/manage/edit/:slug"
             element={<EditCategories />}
           />
+          <Route path="users/manage" element={<Users />} />
         </Route>
       </Routes>
 
@@ -62,5 +56,4 @@ function App() {
   );
 }
 
-// Exporting the App component so it can be used elsewhere.
 export default App;
