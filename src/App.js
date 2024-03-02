@@ -14,6 +14,7 @@ import EditPost from "./pages/admin/screens/posts/EditPost";
 import Categories from "./pages/admin/screens/categories/Categories";
 import EditCategories from "./pages/admin/screens/categories/EditCategories";
 import Users from "./pages/admin/screens/users/Users";
+import BlogPage from "./pages/blog/BlogPage";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
       <Routes>
         {/* Main home route. */}
         <Route index path="/" element={<HomePage />} />
+
+        {/* Route to display the blog page with all articles. */}
+        <Route path="/blog" element={<BlogPage />} />
 
         {/* Route to display a detailed article/blog page. */}
         <Route path="/blog/:slug" element={<ArticleDetailPage />} />

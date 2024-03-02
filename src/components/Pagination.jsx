@@ -66,6 +66,7 @@ const Pagination = ({
           // For normal page numbers, return a button with onClick handler and style for active page
           return (
             <button
+              key={pageNumber}
               type="button"
               className={`w-full px-4 py-2 text-base border ${
                 pageNumber === currentPage
