@@ -8,6 +8,7 @@ import ErrorMessage from "../../components/ErrorMessage";
 import MainLayout from "../../components/MainLayout";
 import Pagination from "../../components/Pagination";
 import { useSearchParams } from "react-router-dom";
+import Search from "../../components/Search";
 
 let isFirstRun = true;
 
@@ -16,17 +17,14 @@ const BlogPage = () => {
 
   const searchParamsValue = Object.fromEntries([...searchParams]);
 
-  console.log(searchParamsValue);
-
-  const [currentPage, setCurrentPage] = useState(
-    parseInt(searchParams?.page) || 1
-  );
+  const currentPage = parseInt(searchParamsValue?.page) || 1;
+  const searchKeyword = searchParamsValue?.search || "";
 
   const { data, isLoading, isError, isFetching, refetch } = useQuery({
-    queryFn: () => getAllPosts("", currentPage, 12),
+    queryFn: () => getAllPosts(searchKeyword, currentPage, 12),
     queryKey: ["posts"],
     onError: (error) => {
-      toast.error("Couldn't fetch the posts data");
+      toast.error(error.message);
       console.error("Error fetching posts:", error);
     },
   });
@@ -38,18 +36,24 @@ const BlogPage = () => {
       return;
     }
     refetch();
-  }, [currentPage, refetch]);
+  }, [currentPage, searchKeyword, refetch]);
 
   const handlePageChange = (page) => {
-    setCurrentPage(page);
-
     // Change the Page's query string in the URL
-    setSearchParams({ page });
+    setSearchParams({ page, search: searchKeyword });
+  };
+
+  const handleSearch = ({ searchKeyword }) => {
+    setSearchParams({ page: 1, search: searchKeyword });
   };
 
   return (
     <MainLayout>
       <section className="flex flex-col container mx-auto px-5 py-10">
+        <Search
+          className="w-full max-w-xl mb-10"
+          onSearchKeyword={handleSearch}
+        />
         <div className="flex flex-wrap md:gap-x-5 gap-y-5 pb-10">
           {isLoading || isFetching ? (
             [...Array(3)].map((_, index) => (
@@ -60,6 +64,8 @@ const BlogPage = () => {
             ))
           ) : isError ? (
             <ErrorMessage message="Couldn't fetch the posts data. Please try again later." />
+          ) : data?.data.length === 0 ? (
+            <p className="text-orange-500">No Articles Found!</p>
           ) : (
             data?.data.map((post) => (
               <ArticleCard
