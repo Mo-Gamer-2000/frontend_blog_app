@@ -22,7 +22,7 @@ const BlogPage = () => {
     parseInt(searchParams?.page) || 1
   );
 
-  const { data, isLoading, isError, refetch } = useQuery({
+  const { data, isLoading, isError, isFetching, refetch } = useQuery({
     queryFn: () => getAllPosts("", currentPage, 12),
     queryKey: ["posts"],
     onError: (error) => {
@@ -51,7 +51,7 @@ const BlogPage = () => {
     <MainLayout>
       <section className="flex flex-col container mx-auto px-5 py-10">
         <div className="flex flex-wrap md:gap-x-5 gap-y-5 pb-10">
-          {isLoading ? (
+          {isLoading || isFetching ? (
             [...Array(3)].map((_, index) => (
               <ArticleCardSkeleton
                 key={index}
