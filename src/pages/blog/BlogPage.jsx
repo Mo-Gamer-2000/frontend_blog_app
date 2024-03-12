@@ -32,11 +32,11 @@ const BlogPage = () => {
   });
 
   useEffect(() => {
+    window.scroll(0, 0);
     if (isFirstRun) {
       isFirstRun = false;
       return;
     }
-    window.scroll(0, 0);
     refetch();
   }, [currentPage, refetch]);
 
